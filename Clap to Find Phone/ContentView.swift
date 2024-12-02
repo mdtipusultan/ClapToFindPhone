@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-//import AVFoundation
 
 struct ContentView: View {
     @StateObject private var audioManager = AudioManager()
@@ -18,11 +17,14 @@ struct ContentView: View {
                 .padding()
                 .foregroundColor(audioManager.clapDetected ? .green : .primary)
 
-            Button(action: audioManager.resetClapStatus) {
-                Text("Reset")
+            Button(action: {
+                audioManager.resetClapStatus()
+                audioManager.stopAlarm()
+            }) {
+                Text("Stop Alarm")
                     .font(.title2)
                     .padding()
-                    .background(Color.blue.opacity(0.8))
+                    .background(Color.red.opacity(0.8))
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
